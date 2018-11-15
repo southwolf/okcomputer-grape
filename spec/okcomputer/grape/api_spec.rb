@@ -140,13 +140,13 @@ describe OkComputer::Grape::Api do
     it "returns a 404 if the check does not exist" do
       get "/non-existent", format: :txt
 
-      last_response.body.should == "No check registered with 'non-existent'"
+      last_response.body.should == "No matching check"
       last_response.status.should == 404
     end
 
     it "returns a JSON 404 if the check does not exist" do
       get "/non-existent", format: :json
-      last_response.body.should == { error: "No check registered with 'non-existent'" }.to_json
+      last_response.body.should == { error: "No matching check" }.to_json
       last_response.status.should == 404
     end
   end

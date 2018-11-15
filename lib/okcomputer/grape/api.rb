@@ -12,9 +12,9 @@ module OkComputer
       formatter :txt, ->(object, env){ object.to_text }
       formatter :html, ->(object, env){ object.to_text }
 
-      error_formatter :json, ->(message, backtrace, options, env) { { error: message.to_s }.to_json }
-      error_formatter :txt, ->(message, backtrace, options, env) { message }
-      error_formatter :html, ->(message, backtrace, options, env) { message }
+      error_formatter :json, ->(message, backtrace, options, env, original_exception) { { error: message.to_s }.to_json }
+      error_formatter :txt, ->(message, backtrace, options, env, original_exception) { message }
+      error_formatter :html, ->(message, backtrace, options, env, original_exception) { message }
 
       rescue_from OkComputer::Registry::CheckNotFound do |exception|
         error!(exception, 404)
